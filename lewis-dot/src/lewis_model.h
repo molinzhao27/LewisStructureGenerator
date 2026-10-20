@@ -70,6 +70,7 @@
 #define ELEM_C          5
 #define ELEM_N          6
 #define ELEM_O          7
+#define ELEM_F          8
 #define ELEM_S          15
 
 typedef struct {

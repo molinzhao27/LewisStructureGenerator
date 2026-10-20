@@ -75,11 +75,18 @@ The script compiles and runs a host executable with `clang`, `gcc`, or `zig cc`.
 
 `lewis-dot/src/lewis_engine.c`
 - Lewis generation logic:
-- central-atom choice
-- skeleton building
-- octet/duet and formal-charge constraints
-- resonance generation and de-duplication
+- skeleton search (backbone chain, terminal-atom and hydrogen placement)
+- exhaustive pi-bond placement for each skeleton, ranked octet-first, then by formal charge
+- resonance forms: every best-ranked form of the chosen skeleton
+- central-atom choice for display and VSEPR
 - invalid-reason classification
+
+## Structure Conventions
+
+- Octet first: atoms get exactly an octet when possible. Period 3+ atoms exceed it only when unavoidable (`SF6`, `PCl5`, `XeF4`, `I3-`), never just to cancel formal charges. `SO4^2-` is drawn with four single bonds (S +2), and `SO2` has two resonance forms.
+- Be/B/Al may keep incomplete octets (`BF3`); carbon may be a sextet only when no octet structure exists (carbocations such as the allyl cation).
+- A formula with several isomers produces one of them. For example, `C2H6O` gives ethanol and `CH3NO2` gives carbamic acid (all formal charges zero), not nitromethane.
+- Rings are not supported.
 
 `lewis-dot/src/layout.h`
 - Public API for atom coordinate layout helpers.
